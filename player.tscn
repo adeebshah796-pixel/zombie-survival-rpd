@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://dmqbr4mpu5kcq"]
 
-[ext_resource type="Script" uid="uid://dccnvpfujp7rm" path="res://player.gd" id="1_4flbx"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sh265"]
+bg_color = Color(0.9566861, 0.3790577, 0.43120688, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4flbx"]
+bg_color = Color(0.3611133, 0.6886824, 0.3590824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onrkg"]
+bg_color = Color(0.8039216, 0.53333336, 0.2, 1)
+
 [node name="Player" type="CharacterBody3D" unique_id=95561409 groups=["player"]]
-script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1688569125]
 shape = SubResource("CapsuleShape3D_sh265")
@@ -23,3 +29,26 @@ transform = Transform3D(1, 0, 0, 0, 0.94125265, 0.33770317, 0, -0.33770317, 0.94
 
 [node name="GunRay" type="RayCast3D" parent="Neck/Camera3D" unique_id=1078507124]
 target_position = Vector3(0, 0, -50)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1879622777]
+
+[node name="HealthBar" type="ProgressBar" parent="HUD" unique_id=1426209185]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 47.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_sh265")
+
+[node name="StaminaBar" type="ProgressBar" parent="HUD" unique_id=972738491]
+offset_left = 20.0
+offset_top = 55.0
+offset_right = 220.0
+offset_bottom = 82.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_4flbx")
+
+[node name="HungerBar" type="ProgressBar" parent="HUD" unique_id=16367366]
+offset_left = 20.0
+offset_top = 85.0
+offset_right = 220.0
+offset_bottom = 112.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_onrkg")

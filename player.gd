@@ -5,10 +5,28 @@ extends CharacterBody3D
 @export var jump_velocity: float = 4.5
 @export var mouse_sensitivity: float =0.002
 
+@export var max_health: float = 100.0
+var current_health: float = max_health
+@export var max_stamina: float = 100.0
+var current_stamina: float = max_stamina
+@export var stamina_drain_rate: float = 20.0
+@export var stamina_regen_rate: float = 10.0
+
+@export var max_hunger: float = 100.0
+var current_hunger: float = max_hunger
+@export var hunger_drain_rate: float = 0.5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+
 @onready var neck:Node3D=$Neck
 @onready var camera:Camera3D=$Neck/Camera3D
 @onready var gun_ray:RayCast3D=$Neck/Camera3D/GunRay
+
+@onready var health_bar: ProgressBar = $HUD/HealthBAR
+@onready var stamina_bar: ProgressBar = $HUD/StaminaBar
+@onready var hunger_bar: ProgressBar = $HUD/HungerBar
+
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	gun_ray.add_exception(self)
@@ -52,4 +70,5 @@ func shoot_weapon():
 		
 		if hit_object.has_method("take_damage"):
 			hit_object.take_damage(25)
-	
+
+ 
