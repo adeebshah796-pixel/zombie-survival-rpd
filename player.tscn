@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4flbx"]
 
-[node name="Player" type="CharacterBody3D" unique_id=95561409]
+[node name="Player" type="CharacterBody3D" unique_id=95561409 groups=["player"]]
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1688569125]
@@ -16,6 +16,10 @@ shape = SubResource("CapsuleShape3D_sh265")
 mesh = SubResource("CapsuleMesh_4flbx")
 
 [node name="Neck" type="Node3D" parent="." unique_id=521893765]
+transform = Transform3D(1, 0, 0, 0, 0.9903142, 0.13884471, 0, -0.13884471, 0.9903142, 0, 0.5476694, 0.40499926)
 
 [node name="Camera3D" type="Camera3D" parent="Neck" unique_id=1440285457]
 transform = Transform3D(1, 0, 0, 0, 0.94125265, 0.33770317, 0, -0.33770317, 0.94125265, 0, 0.80999637, 1.3034889)
+
+[node name="GunRay" type="RayCast3D" parent="Neck/Camera3D" unique_id=1078507124]
+target_position = Vector3(0, 0, -50)
