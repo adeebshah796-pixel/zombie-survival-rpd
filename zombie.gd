@@ -34,4 +34,4 @@ func take_damage(amount: int) -> void:
 		if health <=0:
 			print("zombie killed!")
 			queue_free()
-			
+		
