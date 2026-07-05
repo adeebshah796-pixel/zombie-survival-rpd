@@ -33,7 +33,7 @@ use_collision = true
 size = Vector3(20, 0.5, 20)
 
 [node name="Zombie" parent="." unique_id=980537676 instance=ExtResource("3_bhu08")]
-transform = Transform3D(0.9999919, 0.003996781, 0, -0.003996781, 0.9999919, 0, 0, 0, 1, -5.680736, 1.2519908, -0.4117279)
+transform = Transform3D(0.9999919, 0.003996781, 0, -0.003996781, 0.9999919, 0, 0, 0, 1, -5.6807356, 1.2519907, 0.53670883)
 
 [node name="Zombie2" parent="." unique_id=1933921488 instance=ExtResource("3_bhu08")]
-transform = Transform3D(0.9999919, 0.003996781, 0, -0.003996781, 0.9999919, 0, 0, 0, 1, -6.4001074, 1.25199, -2.8539214)
+transform = Transform3D(0.9999919, 0.003996781, 0, -0.003996781, 0.9999919, 0, 0, 0, 1, -6.920376, 1.2540694, -2.8889518)

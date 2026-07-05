@@ -1,6 +1,10 @@
 extends CharacterBody3D
 @export var speed: float = 3.0
 @export var health:int = 50
+@export var attack_damage: float = 15.0
+@export var attack_range: float = 2.0
+var time_since_last_attack: float = 0.0
+@export var attack_cooldown: float = 1.5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player: CharacterBody3D = null
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
@@ -26,6 +30,13 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x,0, speed)
 			velocity.z = move_toward(velocity.z,0, speed)
 	move_and_slide()
+	time_since_last_attack += delta
+	if player:
+		var distance_to_player = global_position.distance_to(player.global_position)
+		if distance_to_player <= attack_range and time_since_last_attack >= attack_cooldown:
+				if player.has_method("take_damage"):
+					player.take_damage(attack_damage)
+					time_since_last_attack = 0.0
 func take_damage(amount: int) -> void:
 	health -= amount 
 	print("Zombie hit! health left: ",health)

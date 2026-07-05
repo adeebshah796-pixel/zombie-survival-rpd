@@ -55,15 +55,15 @@ func _physics_process(delta:float) -> void:
 	var input_dir:Vector2 = Input.get_vector("move_left","move_right","move_forward","move_backward")
 	var direction: Vector3 = (transform.basis * Vector3(input_dir.x,0,input_dir.y)).normalized()
 	var current_speed = speed
-	if Input.is_action_pressed("sprint") and direction != Vector3.ZERO and current_stamina > 0:
+	if Input.is_action_pressed("sprint") and direction != Vector3.ZERO and current_stamina > 0.0:
 		current_speed = sprint_speed
-		current_stamina -= stamina_drian_rate * delta
+		current_stamina -= stamina_drain_rate * delta
 	
-	else
+	else:
 		current_stamina = move_toward(current_stamina, max_stamina, stamina_regen_rate * delta)
 	if direction:
-		velocity.x =direction.x*speed
-		velocity.z=direction.z*speed
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
 	else:
 		velocity.x =move_toward(velocity.x,0,speed)
 		velocity.z=move_toward(velocity.z,0,speed)
@@ -72,7 +72,8 @@ func _physics_process(delta:float) -> void:
 func handle_survival_stats(delta: float) -> void:
 	current_hunger = move_toward(current_hunger, 0, hunger_drain_rate * delta)
 	if current_hunger <= 0:
-		die()
+		take_damage(2.0 * delta)
+		
 func update_ui() -> void:
 	health_bar.value = current_health
 	stamina_bar.value = current_stamina
@@ -88,6 +89,10 @@ func shoot_weapon():
 		
 		if hit_object.has_method("take_damage"):
 			hit_object.take_damage(25)
+func take_damage(amount: float) -> void:
+	current_health -= amount
+	if current_health <= 0:
+			die()
 func die() -> void:
 	print("YOU DIED!")
 	get_tree().reload_current_scene()
