@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dmqbr4mpu5kcq" path="res://player.tscn" id="1_bw3m6"]
 [ext_resource type="PackedScene" uid="uid://cfs570cgx3amb" path="res://target_dummy.tscn" id="2_6614m"]
-[ext_resource type="PackedScene" uid="uid://8rnbitspfa4t" path="res://zombie.tscn" id="3_bhu08"]
+[ext_resource type="PackedScene" uid="uid://bmgujdhfu8274" path="res://zombie_spawner.tscn" id="3_bhu08"]
 
 [sub_resource type="Environment" id="Environment_bw3m6"]
 
@@ -32,8 +32,5 @@ navigation_mesh = SubResource("NavigationMesh_6614m")
 use_collision = true
 size = Vector3(20, 0.5, 20)
 
-[node name="Zombie" parent="." unique_id=980537676 instance=ExtResource("3_bhu08")]
-transform = Transform3D(0.9999919, 0.003996781, 0, -0.003996781, 0.9999919, 0, 0, 0, 1, -5.6807356, 1.2519907, 0.53670883)
-
-[node name="Zombie2" parent="." unique_id=1933921488 instance=ExtResource("3_bhu08")]
-transform = Transform3D(0.9999919, 0.003996781, 0, -0.003996781, 0.9999919, 0, 0, 0, 1, -6.920376, 1.2540694, -2.8889518)
+[node name="ZombieSpawner" parent="." unique_id=496901001 instance=ExtResource("3_bhu08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017353873, 0.43419248, -0.61846185)

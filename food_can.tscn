@@ -7,7 +7,7 @@ custom_aabb = AABB(0.3, 0.3, 0.3, 0, 0, 0)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hwf3w"]
 height = 1.0229492
-radius = 0.53515625
+radius = 0.8803711
 
 [node name="FoodCan" type="Area3D" unique_id=221422933]
 collision_layer = 0
@@ -18,5 +18,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.055485487, 0.12669265, 0.06
 mesh = SubResource("CylinderMesh_mui5j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1860938690]
-transform = Transform3D(0.9588279, 0.2506363, -0.13353078, -0.23045388, 0.9614709, 0.14988223, 0.1659519, -0.11293856, 0.97964525, -0.52166647, 1.1937009, 1.0014899)
+transform = Transform3D(0.2411018, 0.20564377, -0.94846237, -0.23045385, 0.961471, 0.14988221, 0.9427412, 0.18243995, 0.27920365, -0.52166647, 1.1937009, 1.0014899)
 shape = SubResource("CylinderShape3D_hwf3w")
