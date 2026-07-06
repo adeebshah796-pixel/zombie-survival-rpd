@@ -112,7 +112,12 @@ func reload_weapon():
 	print("reloading started...")
 	is_reloading = true
 	update_ui()
-	await get_tree().create_timer(reload_time)
+	await get_tree().create_timer(reload_time).timeout
+	current_ammo = max_ammo
+	is_reloding = false
+	print("res://player.tscn""Reload complete!")
+	update_ui()
+
 func take_damage(amount: float) -> void:
 	current_health -= amount
 	if current_health <= 0:

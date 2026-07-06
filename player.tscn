@@ -61,3 +61,7 @@ offset_bottom = 186.0
 theme_override_font_sizes/font_size = 24
 text = "12/22
 "
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD" unique_id=1681047393]
+offset_right = 40.0
+offset_bottom = 40.0
