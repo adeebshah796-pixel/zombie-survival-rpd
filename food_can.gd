@@ -5,5 +5,5 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		print("Yum! Food collected.")
-		body.current_hunger = min(body.current_hunbger + hunger_restore_amount, body.max_hunger)
+		body.current_hunger = min(body.current_hunger + hunger_restore_amount, body.max_hunger)
 		queue_free()

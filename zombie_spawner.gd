@@ -7,6 +7,6 @@ func _on_timer_timeout() -> void:
 	if zombie_scene == null:
 		print("WARNING: No zombie scene assigned to the ZombieSpawner!")
 	var new_zombie = zombie_scene.instantiate()
-	new_zombie.global_position = global_position
 	get_parent().add_child(new_zombie)
+	new_zombie.global_position = global_position
 	print("A new zombie has crawled out of ground!")

@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://dl4nepr7lxnnw"]
 
 [ext_resource type="PackedScene" uid="uid://dmqbr4mpu5kcq" path="res://player.tscn" id="1_bw3m6"]
-[ext_resource type="PackedScene" uid="uid://cfs570cgx3amb" path="res://target_dummy.tscn" id="2_6614m"]
 [ext_resource type="PackedScene" uid="uid://bmgujdhfu8274" path="res://zombie_spawner.tscn" id="3_bhu08"]
 
 [sub_resource type="Environment" id="Environment_bw3m6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_6614m"]
-vertices = PackedVector3Array(-9.5, 0.75, -9.5, -9.5, 0.75, 9.5, 9.5, 0.75, 9.5, 9.5, 0.75, -9.5)
+vertices = PackedVector3Array(-14.43164, 0.75, -21.771484, -14.43164, 0.75, 13.228516, 18.56836, 0.75, 13.228516, 18.56836, 0.75, -21.771484)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="MainLevel" type="Node3D" unique_id=2031066754]
@@ -22,15 +21,13 @@ environment = SubResource("Environment_bw3m6")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=742156676]
 transform = Transform3D(1, 0, 0, 0, 0.058191266, 0.99830544, 0, -0.99830544, 0.058191266, 0, 4.7846174, 0)
 
-[node name="TargetDummy" parent="." unique_id=1861360370 instance=ExtResource("2_6614m")]
-transform = Transform3D(0.9999919, 0.003996781, 0, -0.003996781, 0.9999919, 0, 0, 0, 1, 1.6040556, 0.69495106, 0.7842555)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1206926533]
 navigation_mesh = SubResource("NavigationMesh_6614m")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=774451889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1001592, 9.313226e-10, -4.2090454)
 use_collision = true
-size = Vector3(20, 0.5, 20)
+size = Vector3(34.0636, 0.5, 36.124878)
 
 [node name="ZombieSpawner" parent="." unique_id=496901001 instance=ExtResource("3_bhu08")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0017353873, 0.43419248, -0.61846185)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009015567, 2.2556884, -0.61846185)

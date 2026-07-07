@@ -8,6 +8,7 @@ var time_since_last_attack: float = 0.0
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player: CharacterBody3D = null
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var anim_player:AnimationPlayer=$Model/AnimationPlayer
 func _ready():
 	await get_tree().process_frame
 	var players = get_tree().get_nodes_in_group("player")
@@ -23,9 +24,12 @@ func _physics_process(delta: float) -> void:
 			var direction: Vector3 =(next_position - global_position).normalized()
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
+			
 			if direction.x != 0 or direction.z != 0:
 				var target_angle = atan2(-direction.x, -direction.z)
 				rotation.y = rotate_toward(rotation.y, target_angle,delta * 6.0)
+			if anim_player.current_animation!="mixamo_com":
+				anim_player.play("mixamo_com")
 		else:
 			velocity.x = move_toward(velocity.x,0, speed)
 			velocity.z = move_toward(velocity.z,0, speed)
@@ -41,8 +45,6 @@ func take_damage(amount: int) -> void:
 	health -= amount 
 	print("Zombie hit! health left: ",health)
 	if health <=0:
-		print("zombie hit!  Health left: ",health )
-		if health <=0:
-			print("zombie killed!")
-			queue_free()
+		print("zombie killed!")
+		queue_free()
 		

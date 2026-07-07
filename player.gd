@@ -21,16 +21,18 @@ var current_ammo: int = max_ammo
 var is_reloading: bool = false 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-
+var is_shooting:bool=false
 @onready var neck:Node3D=$Neck
 @onready var camera:Camera3D=$Neck/Camera3D
 @onready var gun_ray:RayCast3D=$Neck/Camera3D/GunRay
 
-@onready var health_bar: ProgressBar = $HUD/HealthBAR
+@onready var health_bar: ProgressBar = $HUD/HealthBar
 @onready var stamina_bar: ProgressBar = $HUD/StaminaBar
 @onready var hunger_bar: ProgressBar = $HUD/HungerBar
+@onready var ammo_label:Label=$HUD/AmmoLabel
 
-
+@onready var anim_player:AnimationPlayer=$Model/AnimationPlayer
+@onready var gun=$Model/Node/Skeleton3D/BoneAttachment3D/Gun
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	gun_ray.add_exception(self)
@@ -66,15 +68,20 @@ func _physics_process(delta:float) -> void:
 	if Input.is_action_pressed("sprint") and direction != Vector3.ZERO and current_stamina > 0.0:
 		current_speed = sprint_speed
 		current_stamina -= stamina_drain_rate * delta
-	
 	else:
 		current_stamina = move_toward(current_stamina, max_stamina, stamina_regen_rate * delta)
-	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
-	else:
-		velocity.x =move_toward(velocity.x,0,speed)
-		velocity.z=move_toward(velocity.z,0,speed)
+	if !is_shooting:
+		if direction !=Vector3.ZERO:
+			velocity.x=direction.x*current_speed
+			velocity.z=direction.z*current_speed
+
+			if is_on_floor() and anim_player.current_animation!="Run":
+				anim_player.play("Run")
+		else:
+			velocity.x =move_toward(velocity.x,0,speed)
+			velocity.z=move_toward(velocity.z,0,speed)
+			if is_on_floor() and anim_player.current_animation!="Idle":
+				anim_player.play("Idle")
 	move_and_slide()
 	update_ui()
 func handle_survival_stats(delta: float) -> void:
@@ -87,25 +94,38 @@ func update_ui() -> void:
 	stamina_bar.value = current_stamina
 	hunger_bar.value = current_hunger
 	if is_reloading:
-		ammo_label.text = "Reloding..."
+		ammo_label.text = "Reloading..."
 	else:
 		ammo_label.text = str(current_ammo) + " / " + str(max_ammo)
 
 
 func shoot_weapon():
-	if is_reloading:
-		print("can't shoot while reloading!")
+	if is_reloading or is_shooting:
 		return
+
 	if current_ammo <= 0:
-		print("Out of ammo! Press R toreload.")
+		print("Out of ammo! Press R to reload.")
+		return
+
+	is_shooting = true
 	current_ammo -= 1
+
+	gun.visible = true
+	anim_player.play("Gunplay")
+
+	await anim_player.animation_finished
+
+	gun.visible = false
+	is_shooting = false
+
 	update_ui()
+
 	print("Bang!")
-	
+
 	if gun_ray.is_colliding():
-		var hit_object=gun_ray.get_collider()
-		print("Hit Object:",hit_object.name)
-		
+		var hit_object = gun_ray.get_collider()
+		print("Hit Object:", hit_object.name)
+
 		if hit_object.has_method("take_damage"):
 			hit_object.take_damage(25)
 func reload_weapon():
@@ -114,8 +134,8 @@ func reload_weapon():
 	update_ui()
 	await get_tree().create_timer(reload_time).timeout
 	current_ammo = max_ammo
-	is_reloding = false
-	print("res://player.tscn""Reload complete!")
+	is_reloading = false
+	print("Reload complete!")
 	update_ui()
 
 func take_damage(amount: float) -> void:
@@ -125,6 +145,4 @@ func take_damage(amount: float) -> void:
 func die() -> void:
 	print("YOU DIED!")
 	get_tree().reload_current_scene()
-	
-
  
