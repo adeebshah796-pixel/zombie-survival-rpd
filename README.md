@@ -18,3 +18,10 @@ RIGHT MOUSE BUTTON TO SHOOT
 ESC TO UNCAPTURE THE MOUSE 
 
 DOUBLE CLICK THE MOUSE TO CAPTURE BACK
+
+
+why isnt the readme check completeing i dont have anything to write 
+
+the game is simple and easy to play please rate my game good and give me coins also this is my first game so keep that in mind 
+
+ummmmmmmmmmmmmmmmmmmmmmmmm also give me some ideas to what to add in this game after this ship!!!!
