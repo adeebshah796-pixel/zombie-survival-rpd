@@ -24,7 +24,7 @@ i want to keep making this game bigger after this first ship
 
 * w a s d move
 * space jump
-* right mouse button shoot
+* left mouse button shoot
 * esc uncapture mouse
 * double click mouse capture mouse again
 
@@ -157,7 +157,7 @@ i want to keep making this game bigger after this first ship
 
 * w a s d move
 * space jump
-* right mouse button shoot
+* left mouse button shoot
 * esc uncapture mouse
 * double click mouse capture mouse again
 
