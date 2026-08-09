@@ -231,3 +231,18 @@ it may be small now but i want to keep updating it and making it bigger
 i hope you enjoy killing zombies and surviving
 
 have fun and thank you for playing my first game
+
+
+#instructions to run it locally
+
+you need to download the zip file here in github 
+
+then extract and open the folder in godot 
+
+and you are done!
+
+
+#screenshots
+
+<img width="1919" height="1018" alt="Screenshot 2026-08-09 212052" src="https://github.com/user-attachments/assets/075a7282-880c-4165-bf1f-92bdc8b883e7" />
+<img width="1096" height="626" alt="Screenshot 2026-08-09 211440" src="https://github.com/user-attachments/assets/83a9de91-b31a-4905-8899-378b1dac0a39" />
